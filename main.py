@@ -2,6 +2,8 @@ from cassandra.cluster import Cluster
 import mysql.connector
 from config import *
 import sys
+from misc import *
+from experiments.experiment1.exprmt import runExperiment1
 
 # The entry to the test program
 # Precondition:
@@ -20,6 +22,7 @@ if __name__ == "__main__":
     print("-"*16 + "CONNECTED TO DATABASES" + "-"*16)
 
     print("\n")
+    runExperiment1()
 
     # Choose and execute the experiment
     while True:
@@ -31,12 +34,12 @@ CHOOSE AN EXPERIMENT:
     4) 
 """)
     
-        if experiment_num == 1:
+        if experiment_num == "1":
             runExperiment1()
             pass
-        elif experiment_num == 2:
+        elif experiment_num == "2":
             pass
-        elif experiment_num == 3:
+        elif experiment_num == "3":
             pass
         else:
             pass
