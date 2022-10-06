@@ -8,23 +8,28 @@ import sys
 # Postcondition:
 
 if __name__ == "__main__":
-    print("-"*16 + "CONNECTING TO DATABASE..." + "-"*16)
+    # Connecting to databases
+    print("-"*16 + "CONNECTING TO DATABASES..." + "-"*16)
 
-    cassandra_cluster = Cluster([CASSANDRA_CONFIG.ip_address])
-    my_sql_cnx = mysql.connector.connect(
-        user=MYSQL_CONFIG['user'], password=MYSQL_CONFIG["password"],
-        host=MYSQL_CONFIG['ip_address']
-    )
+    # cassandra_cluster = Cluster([CASSANDRA_CONFIG.ip_address])
+    # my_sql_cnx = mysql.connector.connect(
+    #     user=MYSQL_CONFIG['user'], password=MYSQL_CONFIG["password"],
+    #     host=MYSQL_CONFIG['ip_address']
+    # )
 
-    print("-"*16 + "CONNECTED TO DATABASE" + "-"*16)
-    print("\n\n")
+    print("-"*16 + "CONNECTED TO DATABASES" + "-"*16)
+
+    print("\n")
+
+    # Choose and execute the experiment
     while True:
-        experiment_num = input("""CHOOSE AN EXPERIMENT: 
-        1) 
-        2)
-        3) 
-        4) 
-        """)
+        experiment_num = input("""
+CHOOSE AN EXPERIMENT: 
+    1) 
+    2)
+    3) 
+    4) 
+""")
     
         if experiment_num == 1:
             pass
