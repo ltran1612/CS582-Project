@@ -22,3 +22,11 @@ An experiment to compare Cassandra vs MySQL
           "password": "",
           "ip_address": "127.0.0.1"
         }
+
+## Start up Docker
+
+### Run MySQL on port 3306
+    docker run -e MYSQL_ROOT_PASSWORD=1234 -p 3306:3306 -d mysql:8.0.30
+
+### Run Cassandra on port 9042
+    docker run -p 9042:9042 -d cassandra:3.11

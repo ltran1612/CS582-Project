@@ -11,11 +11,11 @@ if __name__ == "__main__":
     # Connecting to databases
     print("-"*16 + "CONNECTING TO DATABASES..." + "-"*16)
 
-    # cassandra_cluster = Cluster([CASSANDRA_CONFIG.ip_address])
-    # my_sql_cnx = mysql.connector.connect(
-    #     user=MYSQL_CONFIG['user'], password=MYSQL_CONFIG["password"],
-    #     host=MYSQL_CONFIG['ip_address']
-    # )
+    cassandra_cluster = Cluster([CASSANDRA_CONFIG['ip_address']])
+    my_sql_cnx = mysql.connector.connect(
+        user=MYSQL_CONFIG['user'], password=MYSQL_CONFIG["password"],
+        host=MYSQL_CONFIG['ip_address']
+    )
 
     print("-"*16 + "CONNECTED TO DATABASES" + "-"*16)
 
@@ -32,6 +32,7 @@ CHOOSE AN EXPERIMENT:
 """)
     
         if experiment_num == 1:
+            runExperiment1()
             pass
         elif experiment_num == 2:
             pass
