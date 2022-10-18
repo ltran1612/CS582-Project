@@ -1,2 +1,4 @@
+from misc import Read
+
 def runExperiment1():
-    print("hi")
+    print(Read("setup.sh"))
