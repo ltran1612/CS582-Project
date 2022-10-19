@@ -11,17 +11,17 @@ def runExperiment1(mysql, cassandra, iterations=1):
         timer.start()
         for query in mysql_queries: 
             mysql.execute(query)
-            result = mysql
-            if result.with_rows:
-                debug("Row count: ", result.rowcount)
-                #debug(result.fetchall())
+            #result = mysql
+            # if result.with_rows:
+            #     debug("Row count: ", result.rowcount)
+            #     #debug(result.fetchall())
         mysql_time = timer.stop()
 
         # execute cassandra queries
         timer.start()
         for query in cassandra_queries:
             rows = cassandra.execute(query)
-            debug("Row count: ", len(rows.all()))
+            #debug("Row count: ", len(rows.all()))
         cassandra_time = timer.stop()
 
         print("{},{}".format(mysql_time, cassandra_time))
