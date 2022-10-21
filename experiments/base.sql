@@ -6,7 +6,7 @@ channelId NVARCHAR(50) NULL,
 channelTitle NVARCHAR(20) NULL,
 categoryId NVARCHAR(20) NULL,
 trending_date NVARCHAR(30) NULL,
-tags NVARCHAR(100) NULL,
+tags NVARCHAR(1000) NULL,
 view_count INT NULL,
 likes INT NULL,
 dislikes INT NULL,
@@ -14,7 +14,7 @@ comment_count INT NULL,
 thumbnail_linke VARCHAR(500) NULL,
 comments_disabled NVARCHAR(7) NULL,
 ratings_disabled NVARCHAR(7) NULL,
-desciption NVARCHAR(500) NULL
+desciption NVARCHAR(5000) NULL
 );
 
  CREATE TABLE netflix

@@ -1,9 +1,9 @@
 use test;
 
-select release_year
+select likes
 from youtube
 ;
 
-select sum(release_year)
+select avg(likes)
 from youtube
 ;

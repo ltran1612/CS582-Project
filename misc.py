@@ -6,10 +6,22 @@ def Read(name):
         lines = f.readlines()
         return "\n".join(lines)
 
+def clean_str(my_str):
+    my_str = my_str.replace("\n", " ")
+    return my_str
+
+def is_empty(my_str):
+    for c in my_str:
+        if c != " " and c != "\n" and c != "\t" and c != 0:
+            return False
+    
+    return True
+
 def get_queries(name):
     query_string = Read(name)
     queries = query_string.split(";")
-    return filter(lambda x: x != "", queries)
+    queries = map(lambda x: clean_str(x), queries)
+    return filter(lambda x: not is_empty(x) and x != ";", queries)
 
 # https://stackoverflow.com/questions/5574702/how-do-i-print-to-stderr-in-python
 def debug(*args, **kwargs):
