@@ -34,7 +34,7 @@ def insert_to_mysql(mysql_connect, mysql):
     buffer_size = 0
     for index, row in df.iterrows():
         mysql.execute("use test;")
-        row['description'] = ""
+        row['description'] = str(row['description'])
         row['title'] = str(row['title'])
         row["tags"] = str(row["tags"])
         row["channelTitle"] = str(row["channelTitle"])
