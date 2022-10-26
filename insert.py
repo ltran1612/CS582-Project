@@ -26,7 +26,7 @@ def insert_to_cassandra(cassandra):
     print(count)
 
 def insert_to_mysql(mysql_connect, mysql):
-    insert_stmt = ("INSERT INTO youtube (video_id, title, publishedAt, channelId, channelTitle, categoryId, trending_date, tags, view_count, likes, dislikes, comment_count, thumbnail_link, comments_disabled, ratings_disabled, desciption) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)")
+    insert_stmt = ("INSERT INTO youtube (video_id, title, publishedAt, channelId, channelTitle, categoryId, trending_date, tags, view_count, likes, dislikes, comment_count, thumbnail_link, comments_disabled, ratings_disabled, description) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)")
     
     df = pd.read_csv('data/youtube/US_youtube_trending_data.csv')
     print(df.columns.tolist())
@@ -35,10 +35,11 @@ def insert_to_mysql(mysql_connect, mysql):
     for index, row in df.iterrows():
         mysql.execute("use test;")
         row['description'] = ""
-        row['title'] = ""
-        row["tags"] = ""
-        row["channelTitle"] = ""
-        data = tuple(row) #(row['video_id'], row['title'], row['publishedAt'], row['channelId'], row['channelTitle'], row[''])
+        row['title'] = str(row['title'])
+        row["tags"] = str(row["tags"])
+        row["channelTitle"] = str(row["channelTitle"])
+        data = list(row) #(row['video_id'], row['title'], row['publishedAt'], row['channelId'], row['channelTitle'], row[''])
+        #print(len(data))
         mysql.execute(insert_stmt, data)
         count = count + 1
         buffer_size = buffer_size + 1
