@@ -32,7 +32,8 @@ CHOOSE AN EXPERIMENT:
     2)
     3) 
     4) 
-    5) Insert MySQL
+    5) Insert YouTube data to MySQL
+    6) Insert YouTube data Cassandra
 """)
     
         if experiment_num == "1":
@@ -42,7 +43,8 @@ CHOOSE AN EXPERIMENT:
         elif experiment_num == "3":
             pass
         elif experiment_num == "5":
-            #insert_to_mysql(my_sql_cnx, mysql_cursor)
+            insert_to_mysql(my_sql_cnx, mysql_cursor)
+        elif experiment_num == "6":
             insert_to_cassandra(cassandra_session)
         else:
             pass
