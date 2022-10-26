@@ -1,7 +1,7 @@
 import pandas as pd
 
 def insert_to_cassandra(cassandra):
-    insert_stmt = "INSERT INTO youtube (video_id, title, publishedAt, channelId, channelTitle, categoryId, trending_date, tags, view_count, likes, dislikes, comment_count, thumbnail_linke, comments_disabled, ratings_disabled, desciption) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+    insert_stmt = "INSERT INTO youtube (id, video_id, title, publishedAt, channelId, channelTitle, categoryId, trending_date, tags, view_count, likes, dislikes, comment_count, thumbnail_link, comments_disabled, ratings_disabled, desciption) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
     
     df = pd.read_csv('data/youtube/US_youtube_trending_data.csv')
     print(df.columns.tolist())
@@ -17,15 +17,16 @@ def insert_to_cassandra(cassandra):
         row['ratings_disabled'] = str(row['ratings_disabled'])
         row['description'] = str(row['description'])
         #row["channelTitle"] = ""
-        data = tuple(row) #(row['video_id'], row['title'], row['publishedAt'], row['channelId'], row['channelTitle'], row[''])
-        cassandra.execute(insert_stmt, data)
+        data = list(row) #(row['video_id'], row['title'], row['publishedAt'], row['channelId'], row['channelTitle'], row[''])
+        data = [count] + data
+        result = cassandra.execute(insert_stmt, data)
         count = count + 1
         buffer_size = buffer_size + 1
         #print("inserted", count)
     print(count)
 
 def insert_to_mysql(mysql_connect, mysql):
-    insert_stmt = ("INSERT INTO youtube (video_id, title, publishedAt, channelId, channelTitle, categoryId, trending_date, tags, view_count, likes, dislikes, comment_count, thumbnail_linke, comments_disabled, ratings_disabled, desciption) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)")
+    insert_stmt = ("INSERT INTO youtube (video_id, title, publishedAt, channelId, channelTitle, categoryId, trending_date, tags, view_count, likes, dislikes, comment_count, thumbnail_link, comments_disabled, ratings_disabled, desciption) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)")
     
     df = pd.read_csv('data/youtube/US_youtube_trending_data.csv')
     print(df.columns.tolist())
