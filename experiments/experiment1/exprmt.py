@@ -5,10 +5,11 @@ def runExperiment1(mysql, cassandra, iterations=1):
     cassandra_queries_row = get_queries("experiments/experiment1/experiment1_row.cql")
     mysql_queries_column = get_queries("experiments/experiment1/experiment1_col.sql")
     cassandra_queries_column = get_queries("experiments/experiment1/experiment1_col.cql")
-    mysql.execute("use test;")
-    cassandra.execute("use test;")
+    
     print("mysql-row, mysql-column, cassandra-row, cassandra-column")
     for i in range(iterations):
+        mysql.execute("use test;")
+        cassandra.execute("use test;")
         # execute mysql queries
         timer = Timer()
         timer.start()
