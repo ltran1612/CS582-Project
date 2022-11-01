@@ -23,6 +23,9 @@ def runExperiment3(mysql, cassandra, iterations=1):
         mysql_with_index = timer.stop()
         #debug(mysql_with_index)
 
+        for query in mysql_create_index:
+            mysql.execute(query)
+
         timer = Timer()
         timer.start()
         for query in mysql_queries: 
@@ -47,6 +50,9 @@ def runExperiment3(mysql, cassandra, iterations=1):
                 debug(e)
         cassandra_with_index = timer.stop()
         #debug(cassandra_with_index)
+
+        for query in cassandra_create_index:
+            cassandra.execute(query)
 
         timer = Timer()
         timer.start()
