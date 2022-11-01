@@ -8,7 +8,7 @@ def runExperiment1(mysql, cassandra, iterations=1):
     
     print("mysql-row, mysql-column, cassandra-row, cassandra-column")
     for i in range(iterations):
-        mysql.execute("use test;")
+        mysql.execute("use test11;")
         cassandra.execute("use test;")
         # execute mysql queries
         timer = Timer()
