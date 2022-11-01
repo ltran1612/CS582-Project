@@ -59,6 +59,6 @@ class Timer:
             raise Exception("Timer has not started yet")
         
         end_time = time.perf_counter()
-        duration = end_time - self.start_time
+        duration = end_time * 1000 - self.start_time * 1000
         self.start_time = None
         return duration
