@@ -1,0 +1,1 @@
+DROP INDEX view_count_idx

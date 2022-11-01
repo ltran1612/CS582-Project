@@ -32,7 +32,7 @@ def insert_to_mysql(mysql_connect, mysql):
     print(df.columns.tolist())
     count = 0
     buffer_size = 0
-    mysql.execute("use test;")
+    mysql.execute("use test11;")
     for index, row in df.iterrows():
         row['description'] = str(row['description'])
         row['title'] = str(row['title'])

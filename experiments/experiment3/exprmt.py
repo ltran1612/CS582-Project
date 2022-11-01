@@ -5,10 +5,19 @@ def runExperiment3(mysql, cassandra, iterations=1):
     cassandra_queries = get_queries("experiments/experiment3/experiment3.cql")
     mysql_create_index = get_queries("experiments/experiment3/experiment3_create_index.sql")
     cassandra_create_index = get_queries("experiments/experiment3/experiment3_create_index.cql")
-    
-    mysql.execute("use test;")
+    mysql_drop_index = get_queries("experiments/experiment3/experiment3_drop_index.sql") 
+    cassandra_drop_index = get_queries("experiments/experiment3/experiment3_drop_index.cql") 
+
+    mysql.execute("use test11;")
     cassandra.execute("use test;")
+
+    
+
     print("mysql-no-index, mysql-with-index, cassandra-no-index, cassandra-with-index")
+
+    for query in mysql_drop_index:
+            mysql.execute(query)
+
     for i in range(iterations):
         # execute mysql queries
         timer = Timer()
@@ -20,8 +29,7 @@ def runExperiment3(mysql, cassandra, iterations=1):
                 #debug(mysql.rowcount)
             except Exception as e:
                 debug(e)
-        mysql_with_index = timer.stop()
-        #debug(mysql_with_index)
+        mysql_no_index = timer.stop()
 
         for query in mysql_create_index:
             mysql.execute(query)
@@ -35,8 +43,10 @@ def runExperiment3(mysql, cassandra, iterations=1):
                 #debug(mysql.rowcount)
             except Exception as e:
                 debug(e)
-        mysql_no_index = timer.stop()
-        #debug(mysql_no_index)
+        mysql_with_index = timer.stop()
+
+        for query in cassandra_drop_index:
+            cassandra.execute(query)
 
         # execute cassandra queries
         timer = Timer()
@@ -48,8 +58,7 @@ def runExperiment3(mysql, cassandra, iterations=1):
                 #debug(len(rows.all()))
             except Exception as e:
                 debug(e)
-        cassandra_with_index = timer.stop()
-        #debug(cassandra_with_index)
+        cassandra_no_index = timer.stop()
 
         for query in cassandra_create_index:
             cassandra.execute(query)
@@ -63,7 +72,6 @@ def runExperiment3(mysql, cassandra, iterations=1):
                 #debug(len(rows.all()))
             except Exception as e:
                 debug(e)
-        cassandra_no_index = timer.stop()
-        #debug(cassandra_no_index)
+        cassandra_with_index = timer.stop()
 
         print("{},{},{},{}".format(mysql_with_index, mysql_no_index, cassandra_with_index, cassandra_no_index))

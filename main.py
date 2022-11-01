@@ -4,6 +4,7 @@ from config import *
 import sys
 from misc import *
 from experiments.experiment1.exprmt import runExperiment1
+from experiments.experiment3.exprmt import runExperiment3
 from insert import *
 
 # The entry to the test program
@@ -41,7 +42,7 @@ CHOOSE AN EXPERIMENT:
         elif experiment_num == "2":
             pass
         elif experiment_num == "3":
-            pass
+            run_experiment(mysql_cursor, cassandra_session, runExperiment3)
         elif experiment_num == "5":
             insert_to_mysql(my_sql_cnx, mysql_cursor)
         elif experiment_num == "6":

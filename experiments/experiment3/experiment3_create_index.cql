@@ -1,0 +1,1 @@
+CREATE INDEX view_count_idx ON test.youtube(view_count);
