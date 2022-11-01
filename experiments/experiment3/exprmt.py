@@ -8,17 +8,16 @@ def runExperiment3(mysql, cassandra, iterations=1):
     mysql_drop_index = get_queries("experiments/experiment3/experiment3_drop_index.sql") 
     cassandra_drop_index = get_queries("experiments/experiment3/experiment3_drop_index.cql") 
 
-    mysql.execute("use test11;")
-    cassandra.execute("use test;")
-
-    
-
     print("mysql-with-index, mysql-no-index, cassandra-with-index, cassandra-no-index")
 
-    for query in mysql_drop_index:
+    for i in range(iterations):
+
+        mysql.execute("use test11;")
+        cassandra.execute("use test;")
+
+        for query in mysql_drop_index:
             mysql.execute(query)
 
-    for i in range(iterations):
         # execute mysql queries
         timer = Timer()
         timer.start()
