@@ -13,7 +13,7 @@ def runExperiment3(mysql, cassandra, iterations=1):
 
     
 
-    print("mysql-no-index, mysql-with-index, cassandra-no-index, cassandra-with-index")
+    print("mysql-with-index, mysql-no-index, cassandra-with-index, cassandra-no-index")
 
     for query in mysql_drop_index:
             mysql.execute(query)
