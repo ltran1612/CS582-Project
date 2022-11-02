@@ -41,7 +41,7 @@ CHOOSE AN EXPERIMENT:
         if experiment_num == "1":
             run_experiment(mysql_cursor, cassandra_session, runExperiment1)
         elif experiment_num == "2":
-            run_experiment(my_sql_cnx, mysql_cursor, cassandra_session, runExperiment2)
+            run_experiment(my_sql_cnx, cassandra_session, runExperiment2)
         elif experiment_num == "3":
             run_experiment(mysql_cursor, cassandra_session, runExperiment3)
         elif experiment_num == "5":

@@ -21,7 +21,7 @@ def get_queries(name):
     query_string = Read(name)
     queries = query_string.split(";")
     queries = map(lambda x: clean_str(x), queries)
-    return filter(lambda x: not is_empty(x) and x != ";", queries)
+    return list(filter(lambda x: not is_empty(x) and x != ";", queries))
 
 # https://stackoverflow.com/questions/5574702/how-do-i-print-to-stderr-in-python
 def debug(*args, **kwargs):

@@ -4,8 +4,10 @@ from misc import debug
 def insert_to_cassandra(cassandra):    
     df = pd.read_csv('data/youtube/US_youtube_trending_data.csv')
     #print(df.columns.tolist())
-    
+
     rows = parse_data_for_cassandra(df)
+    cassandra.execute("use test;")
+    print("inserting...")
     insert_to_cassandra_test(cassandra, rows)
 
 def parse_data_for_cassandra(df):
@@ -59,7 +61,8 @@ def insert_to_mysql(mysql_connect, mysql):
     df = pd.read_csv('data/youtube/US_youtube_trending_data.csv')
     #print(df.columns.tolist())
     rows = parse_data_for_mysql(df)
-
+    mysql.execute("use test11;")
+    print("inserting...")
     insert_to_mysql_test(mysql_connect, mysql, rows)
 
 
