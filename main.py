@@ -5,6 +5,7 @@ import sys
 from misc import *
 from experiments.experiment1.exprmt import runExperiment1
 from experiments.experiment3.exprmt import runExperiment3
+from experiments.experiment2.exprmt import runExperiment2
 from insert import *
 
 # The entry to the test program
@@ -30,8 +31,8 @@ if __name__ == "__main__":
         experiment_num = input("""
 CHOOSE AN EXPERIMENT: 
     1) Row-oriented vs Column Oriented
-    2)
-    3) 
+    2) Insertion Time Comparision
+    3) Query with index vs Query without index.  
     4) 
     5) Insert YouTube data to MySQL
     6) Insert YouTube data Cassandra
@@ -40,7 +41,7 @@ CHOOSE AN EXPERIMENT:
         if experiment_num == "1":
             run_experiment(mysql_cursor, cassandra_session, runExperiment1)
         elif experiment_num == "2":
-            pass
+            run_experiment(my_sql_cnx, mysql_cursor, cassandra_session, runExperiment2)
         elif experiment_num == "3":
             run_experiment(mysql_cursor, cassandra_session, runExperiment3)
         elif experiment_num == "5":
